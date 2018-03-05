@@ -1,3 +1,5 @@
+#Proof of concept code: Sonar sensor reads distance then activates warning light at certain threshold.
+#Sends Readings to console and Android phone with blueterm
 #Libraries
 import bluetooth
 import RPi.GPIO as GPIO
@@ -55,6 +57,7 @@ def distance():
  
     return distance
 
+#Sets up Bluetooth to coneect to phone
 server_sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 
 port = 1

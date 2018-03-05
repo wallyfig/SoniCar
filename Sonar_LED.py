@@ -1,3 +1,4 @@
+#Proof of concept code: Sonar sensor reads distance then activates warning light at certain threshold
 #Libraries
 import RPi.GPIO as GPIO
 import time
@@ -48,11 +49,11 @@ if __name__ == '__main__':
     try:
         while True:
             dist = distance()
-            print ("Measured Distance = %.1f cm" % dist)
+            print ("Distance = %.0f cm" % dist)
             time.sleep(1)
 
             if (dist < 25):
-                print ('Too Close!')
+                print ('Too Close! - Distance = %.0f cm' % dist)
                 GPIO.output(GPIO_LED,GPIO.HIGH)                
 
             else:
