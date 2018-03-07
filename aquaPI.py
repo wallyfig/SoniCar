@@ -1,4 +1,5 @@
-#Sample control code for aquarium.  Uses Bluetooth to get temperature readings and toggle light.  Connects to an Android App
+#Found sample control code for aquarium.  Uses Bluetooth to get temperature readings and toggle light.  Connects to an Android App
+#Used as reference material
 import os
 import glob
 import time
@@ -11,7 +12,7 @@ os.system('modprobe w1-therm')
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.OUT)
 
-#Setsup and calls a database
+#Sets up and calls a database
 base_dir = '/sys/bus/w1/devices/'
 device_folder = glob.glob(base_dir + '28*')[0]
 device_file = device_folder + '/w1_slave'
@@ -39,7 +40,7 @@ def read_temp():
 #	print(read_temp())	
 #	time.sleep(1)
 
-#Python sets up connection using BLuetooth
+#Python sets up connection using Bluetooth
 server_sock=BluetoothSocket( RFCOMM )
 server_sock.bind(("",PORT_ANY))
 server_sock.listen(1)

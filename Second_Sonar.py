@@ -40,14 +40,10 @@ def distance2():
     # and divide by 2, because there and back
     distance2 = (TimeElapsed * 34300) / 2
     
-    if (distance2 < 3000):
-        return ("{:.0f}".format(distance2))
+    if distance2 < 3000:
+        return str(("{:.0f}".format(distance2)))
     
-    elif (distance2 < 0):
-        return ("")
-    
-    else: 
-        return ("")
-     
+    else:
+        return "--"
                 
 

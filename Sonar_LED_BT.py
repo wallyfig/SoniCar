@@ -1,5 +1,5 @@
-#Proof of concept code: Sonar sensor reads distance then activates warning light at certain threshold.
-#Sends Readings to console and Android phone with blueterm
+#Proof of concept code: When sensor readings hit a certain threshold, actviate the LED
+#Sends distance readings to Android Phone(BlueTerm) using Bluetooth
 #Libraries
 import bluetooth
 import RPi.GPIO as GPIO
@@ -11,8 +11,9 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
  
 #set GPIO Pins
-GPIO_TRIGGER = 21
-GPIO_ECHO = 20
+#Pins 20,21 (trigger, echo) are for sensor 1.  8,7 are for sensor 2
+GPIO_TRIGGER = 20
+GPIO_ECHO = 21
 
 GPIO_LED = 18
  
@@ -57,24 +58,18 @@ def distance():
  
     return distance
 
-#Sets up Bluetooth to coneect to phone
+#Sets up method of Bluetooth conection with socket/port
 server_sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 
 port = 1
 server_sock.bind(('',port))
 server_sock.listen(1)
 
-uuid = "d4f0fd64-ad9d-4cfd-aa76-8d3541fbf008"
-
-#advertise_service( server_sock, "AquaPiServer",
-#                   service_id = uuid,
-#                   service_classes = [ uuid, SERIAL_PORT_CLASS ],
-#                   profiles = [ SERIAL_PORT_PROFILE ],
-#                 )
-
-
+#Loop to constantly run sensor and determine what to say regarding distance readings
+#Distance readings are formated to no decimal places for display 
 if __name__ == '__main__':
     
+    #Establishes and  confirms connection with Bluetooth device
     client_sock,address = server_sock.accept()
     print('Accepted connection from ',address)
     
@@ -102,7 +97,8 @@ if __name__ == '__main__':
 
             else: 
                 GPIO.output(GPIO_LED,GPIO.LOW)
-                
+
+            #Sends readings to Bluetooth device    
             client_sock.send(data)
             print "sending [%s]" % data
                 

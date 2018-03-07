@@ -1,4 +1,5 @@
-#Sample code that enables an Android phone with blueterm to control an LED using Bluetooth
+#Found sample code for conecting Pi to Android phone using Bluetooth
+#Controls on, off, and blink settings of an LED
 import bluetooth
 import RPi.GPIO as GPIO
 import time
@@ -13,14 +14,14 @@ GPIO.setup(GPIO_LED,GPIO.OUT)
 def Blink(numTimes,speed):
     for i in range(0,numTimes):
         GPIO.output(GPIO_LED,True)
-        print(';Blinking ' + str(i+1))
+#        print(';Blinking ' + str(i+1))
         time.sleep(speed)
 
         GPIO.output(GPIO_LED,False)
-        print('Done Blinking LED')
+#        print('Done Blinking LED')
         time.sleep(speed)
 
-#Establishes Bluetooth conenction
+
 server_sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 
 port = 1
@@ -30,7 +31,8 @@ server_sock.listen(1)
 client_sock,address = server_sock.accept()
 print('Accepted connection from ',address)
 
-#Waitng for user input, loops afterwards
+#Controls LED based on input number from Android phone
+#Loops constanly waiting for input
 while True:
     data = client_sock.recv(1024)
     print('received [%s]' % data)
@@ -49,7 +51,12 @@ while True:
 
     if (data == 'e'):
         print ('Exit')
+        
+        GPIO.output(GPIO_LED,GPIO.LOW)
+        GPIO.cleanup()
+        
+        client_sock.close()
+        server_sock.close()
         break
 
-client_sock.close()
-server_sock.close()
+
