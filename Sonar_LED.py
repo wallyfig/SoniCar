@@ -1,14 +1,17 @@
-#Proof of concept code: Sonar sensor reads distance then activates warning light at certain threshold
+#Proof of concept code: When sensor readings hit a certain threshold, actviate the LED
 #Libraries
 import RPi.GPIO as GPIO
 import time
+
  
 #GPIO Mode (BOARD / BCM)
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
  
 #set GPIO Pins
-GPIO_TRIGGER = 21
-GPIO_ECHO = 20
+#Pins 20,21 (trigger, echo) are for sensor 1.  8,7 are for sensor 2
+GPIO_TRIGGER = 8
+GPIO_ECHO = 7
 
 GPIO_LED = 18
  
@@ -17,7 +20,15 @@ GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
 
 GPIO.setup(GPIO_LED,GPIO.OUT)
- 
+
+def Blink(numTimes,speed):
+    for i in range(0,numTimes):
+        GPIO.output(GPIO_LED,True)
+        time.sleep(speed)
+
+        GPIO.output(GPIO_LED,False)
+        time.sleep(speed)
+
 def distance():
     # set Trigger to HIGH
     GPIO.output(GPIO_TRIGGER, True)
@@ -44,23 +55,37 @@ def distance():
     distance = (TimeElapsed * 34300) / 2
  
     return distance
- 
+
+#Loop to constantly run sensro and determine what to say regarding distance readings
+#Distance readings are formated to single decimal place for display 
 if __name__ == '__main__':
     try:
         while True:
             dist = distance()
-            print ("Distance = %.0f cm" % dist)
             time.sleep(1)
 
-            if (dist < 25):
-                print ('Too Close! - Distance = %.0f cm' % dist)
-                GPIO.output(GPIO_LED,GPIO.HIGH)                
+            #Normal operation distances
+            if (dist > 25 and dist < 3000):
+                print ("Distance = %.1f cm" % dist)
+                GPIO.output(GPIO_LED,GPIO.LOW)
 
-            else:
+            #Warning the user they are getting close to an object
+            elif (dist > 15 and dist <= 25):
+                print ("Caution - Distance = %.1f cm" % dist)
+                GPIO.output(GPIO_LED,GPIO.HIGH)
+            
+            #Collison will happen soon, do something about it
+            elif (dist <= 15):
+                print ("WARNING - Distance = %.1f cm" % dist)
+                Blink(3,0.1)
+            
+            #Keeps LED off unless needed
+            else: 
                 GPIO.output(GPIO_LED,GPIO.LOW)
                 
     # Reset by pressing CTRL + C
     except KeyboardInterrupt:
-        print("Measurement stopped by User")
-        GPIO.cleanup()
         GPIO.output(GPIO_LED,GPIO.LOW)
+        GPIO.cleanup()
+        print("Measurement stopped by User")
+
