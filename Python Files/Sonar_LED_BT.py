@@ -59,10 +59,11 @@ def distance():
     return distance
 
 #Sets up method of Bluetooth conection with socket/port
-server_sock=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
+server_sock = BluetoothSocket( RFCOMM )
 
-port = 1
-server_sock.bind(('',port))
+port = server_sock.getsockname()[1]    #Looks for any open port/socket to connect with
+server_sock.bind(('',bluetooth.PORT_ANY))
+
 server_sock.listen(1)
 
 #Loop to constantly run sensor and determine what to say regarding distance readings
@@ -70,6 +71,7 @@ server_sock.listen(1)
 if __name__ == '__main__':
     
     #Establishes and  confirms connection with Bluetooth device
+    print "Waiting for connection on RFCOMM channel"
     client_sock,address = server_sock.accept()
     print('Accepted connection from ',address)
     

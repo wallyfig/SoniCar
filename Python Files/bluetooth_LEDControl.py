@@ -28,6 +28,7 @@ port = 1
 server_sock.bind(('',port))
 server_sock.listen(1)
 
+print "Waiting for connection on RFCOMM channel"
 client_sock,address = server_sock.accept()
 print('Accepted connection from ',address)
 
