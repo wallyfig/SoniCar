@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">SoniCar</string>
+    <string name="loading_screen">loading_screen</string>
+    <string name="FullDisplay">Full_Display</string>
+
+    <string name="FragmentSettings">Fragment Settings</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_user">User</string>
+    <string name="login_text">Login Page</string>
+    <string name="username_text">User Name</string>
+    <string name="password_text">Password</string>
+    <string name="attempt_text">Attempt</string>
+    <string name="button_login_text">Login</string>
+    <string name="screen_page_text">Second page</string>
+
+    <string name="title_activity_loading_screen">LoadingScreen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>

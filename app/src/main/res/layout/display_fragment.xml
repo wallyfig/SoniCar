@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+
+    <ImageButton
+        android:id="@+id/forward_button"
+        android:layout_width="100dip"
+        android:layout_height="200dp"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="112dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/car_birdeye" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/wave1" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_alignTop="@+id/imageView2"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/wave2" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_alignTop="@+id/imageView"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/wave3" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_alignTop="@+id/imageView"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/wave4" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@+id/imageView9"
+        android:rotation="50"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/wave1" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignStart="@+id/imageView7"
+        android:layout_alignTop="@+id/imageView5"
+        android:rotation="50"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/wave2" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignStart="@+id/imageView5"
+        android:layout_alignTop="@+id/imageView5"
+        android:rotation="50"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/wave3" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignTop="@+id/imageView5"
+        android:layout_toEndOf="@+id/imageView9"
+        android:rotation="50"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/wave4" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignEnd="@+id/forward_button"
+        android:layout_alignTop="@+id/imageView5"
+        android:layout_marginEnd="46dp"
+        android:rotation="-50"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/wave1" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignStart="@+id/imageView10"
+        android:layout_alignTop="@+id/imageView5"
+        android:rotation="-50"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/wave2" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignStart="@+id/imageView11"
+        android:layout_alignTop="@+id/imageView5"
+        android:rotation="-50"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/wave3" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignStart="@+id/imageView8"
+        android:layout_alignTop="@+id/imageView5"
+        android:rotation="-50"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/wave4" />
+
+
+    <!--<Button-->
+        <!--android:id="@+id/imageButton"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_above="@+id/forward_button"-->
+        <!--android:layout_alignEnd="@+id/forward_button"-->
+        <!--android:layout_marginBottom="1dp"-->
+        <!--android:text="FullScreen" />-->
+
+</RelativeLayout>
